@@ -1,0 +1,4 @@
+/* pages/search/index.wxss */
+.result {
+  font-size: 14px;
+}

@@ -1,0 +1,18 @@
+<!--pages/collect/index.wxml-->
+<text>我的收藏数量: {{global.myCollectCount}}</text>
+<block wx:for="{{global.pagerList}}" wx:key="id">
+  <view class='artical-list-container' bindtap='jumpToDetail' data-index='{{index}}' data-item='{{item}}'>
+    <view class="artical-list-horizontal-container">
+      <view class='artical-list-main-container'>
+        <text class="title" style="font-size: 17px;">{{item.title}}</text>
+        <view class="second-line-container">
+          <text style="font-size: 14px; color: #AAAAAA;">{{item.shareUser}}</text>
+          <view style="flex-grow: 1;" />
+          <view class="weui-btn-custom" data-item='{{item}}' catchtap="unCollectArticle">取消收藏</view>
+        </view>
+      </view>
+      <mp-icon type="field" icon="arrow" color="black" size="{{14}}"></mp-icon>
+    </view>
+    <view wx:if="{{index !== global.pagerList.length - 1}}" class="artical-list-divider" />
+  </view>
+</block>

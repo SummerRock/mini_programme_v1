@@ -1,0 +1,51 @@
+.mine-top-part {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  padding-top: 180rpx;
+  padding-bottom: 30rpx;
+  align-items: center;
+  background-image: linear-gradient(#2BA245, #1AAD19);
+}
+
+.mine-top-part-image {
+  width: 96rpx;
+  height: 96rpx;
+  border-radius: 8rpx;
+  margin-left: 40rpx;
+}
+
+.mine-user-info-container {
+  display: flex;
+  flex-direction: column;
+  margin-left: 20rpx;
+}
+
+.mine-user-name-text {
+  font-size: 22;
+  color: white;
+}
+
+.mine-user-integral {
+  color: white;
+  font-size: 14px;
+}
+
+.user-rank-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.user-center-info-container {
+  display: flex;
+  flex-direction: column;
+  margin: 20rpx 32rpx;
+}
+
+.user-center-info-image-container {
+  height: 20px;
+  width: 20px;
+}
+page {
+  background-color: #eee;
+}

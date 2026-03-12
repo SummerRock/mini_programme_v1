@@ -1,0 +1,43 @@
+/* pages/collect/index.wxss */
+.artical-list-container {
+  display: flex;
+  padding: 0rpx 32rpx;
+  flex-direction: column;
+}
+
+.artical-list-main-container {
+  padding-top: 32rpx;
+  padding-bottom: 32rpx;
+  display: inline-grid;
+  flex-grow: 1;
+}
+.artical-list-horizontal-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.artical-list-divider {
+  background-color: darkgrey;
+  height: 3rpx;
+}
+.title {
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.second-line-container {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+.weui-btn-custom {
+  flex-direction: row;
+  font-size: 14px;
+  color: white;
+  border-radius: 8rpx;
+  padding: 0rpx 10rpx;
+  background-color: #2BA245;
+}

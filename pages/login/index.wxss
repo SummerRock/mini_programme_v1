@@ -1,0 +1,52 @@
+.login-tab-part {
+  margin-top: 70rpx;
+  margin-left: 40rpx;
+}
+.login-tab-exit-image {
+  width: 18rpx;
+  height: 34rpx;
+}
+.login-top-part {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  margin-top: 150rpx;
+  justify-content: center;
+}
+.login-top-part-text {
+  color: black;
+}
+.login-divider-style {
+  height: 1rpx;
+  margin: 0rpx 32rpx;
+  background-color: #F1F1F1;
+}
+.login-input-part-style {
+  display: flex;
+  flex-direction: row;
+  padding: 30rpx 32rpx;
+}
+.login-input-part-title {
+  width: 150rpx;
+  display: block;
+}
+.form-top-tip {
+  margin-top: 150rpx;
+}
+.forget-password-container {
+  display: flex;
+  margin-top: 20rpx;
+  flex-direction: row;
+  justify-content: flex-end;
+  margin-right: 70rpx;
+}
+
+.forget-password-txt-style {
+  font-size: 14px;
+  margin-left: 10rpx;
+  color: #888888;
+}
+.register-txt-style {
+  font-size: 14px;
+  color: #1AAD19;
+}

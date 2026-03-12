@@ -1,0 +1,38 @@
+<view class="page" data-weui-theme="{{theme}}">
+  <mp-toptips msg="{{error}}" type="error" show="{{error}}"></mp-toptips>
+
+  <mp-form-page title="账号注册">
+    <mp-form id="form" rules="{{rules}}" models="{{formData}}">
+      <mp-cells title="请填写注册信息" footer="输入完毕后请点击确定">
+        <label>
+          <mp-cell prop="userName" title="用户名" ext-class="">
+            <input bindinput="formInputChange" data-field="userName" class="weui-input" placeholder="请输入账户名称" />
+          </mp-cell>
+        </label>
+        <label>
+          <mp-cell prop="password" title="密码" ext-class="">
+            <input bindinput="formInputChange" data-field="password" password="true" class="weui-input" placeholder="请输入密码" />
+          </mp-cell>
+        </label>
+        <label>
+          <mp-cell prop="repassword" title="再次输入密码" ext-class="">
+            <input bindinput="formInputChange" data-field="repassword" password="true" class="weui-input" placeholder="请再次输入密码" />
+          </mp-cell>
+        </label>
+      </mp-cells>
+    </mp-form>
+
+    <checkbox-group slot="tips" bindchange="bindAgreeChange">
+      <label class="weui-agree">
+        <checkbox class="weui-agree__checkbox-check" />
+        <text class="weui-agree__checkbox"></text>
+        <view class="weui-agree__text">阅读并同意<text class="common-darker-green" bindtap="showItems">《相关条款》</text>
+        </view>
+      </label>
+    </checkbox-group>
+
+    <view slot="button">
+      <button class="weui-btn" type="primary" loading="{{loadingStatus !== 0 }}" bindtap="submitForm">确定</button>
+    </view>
+  </mp-form-page>
+</view>

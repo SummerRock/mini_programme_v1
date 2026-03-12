@@ -1,0 +1,48 @@
+{
+    "pages": [
+        "pages/index/index",
+        "pages/search/index",
+        "pages/mine/index",
+        "pages/webview/index",
+        "pages/collect/index",
+        "pages/register/index",
+        "pages/test/index",
+        "pages/login/index"
+    ],
+    "window": {
+        "backgroundTextStyle": "light",
+        "navigationBarTitleText": "玩Android",
+        "navigationBarBackgroundColor": "#eeeeee",
+        "navigationBarTextStyle": "black"
+    },
+    "tabBar": {
+        "color": "#AAAAAA",
+        "selectedColor": "#1AAD19",
+        "backgroundColor": "#FFF",
+        "list": [{
+                "iconPath": "images/home-normal-state.png",
+                "selectedIconPath": "images/home-selected-state.png",
+                "pagePath": "pages/index/index",
+                "text": "首页"
+            },
+            {
+                "iconPath": "images/ic_search_gray.png",
+                "selectedIconPath": "images/ic_search_green.png",
+                "pagePath": "pages/search/index",
+                "text": "搜索"
+            },
+            {
+                "iconPath": "images/user-normal-state.png",
+                "selectedIconPath": "images/user-selected-state.png",
+                "pagePath": "pages/mine/index",
+                "text": "我的"
+            }
+        ]
+    },
+    "style": "v2",
+    "useExtendedLib": {
+        "kbone": true,
+        "weui": true
+    },
+    "sitemapLocation": "sitemap.json"
+}

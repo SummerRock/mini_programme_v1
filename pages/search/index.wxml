@@ -1,0 +1,7 @@
+<!--pages/search/index.wxml-->
+<mp-searchbar search="{{search}}" bindselectresult="selectResult" />
+<view wx:if="{{showBottomNavi}}" class="weui-footer" style="margin: 20rpx 0rpx;">
+  <view class="weui-footer__links ">
+    <navigator url="/pages/webview/index?url=https://www.wanandroid.com/&nav=搜索更多" class="weui-footer__link">搜索更多? 点击前往</navigator>
+  </view>
+</view>

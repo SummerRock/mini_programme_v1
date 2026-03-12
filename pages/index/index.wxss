@@ -1,0 +1,49 @@
+.card-swiper {
+  height: 320rpx;
+  width: 100%;
+}
+.swiper-item-style {
+  height: 100%;
+  width: 100%;
+}
+.banner-image {
+  width: 100%;
+  height: 100%;
+}
+.artical-list-container {
+  display: flex;
+  padding: 0rpx 32rpx;
+  flex-direction: column;
+}
+
+.artical-list-main-container {
+  padding-top: 32rpx;
+  padding-bottom: 32rpx;
+  display: inline-grid;
+  flex-grow: 1;
+}
+.artical-list-horizontal-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.artical-list-divider {
+  background-color: darkgrey;
+  height: 3rpx;
+}
+.title {
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.second-line-container {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+.weui-btn-custom {
+  font-size: 10px;
+}

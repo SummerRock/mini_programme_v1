@@ -1,0 +1,28 @@
+<view class="mine-top-part" bindtap="onUserInfoClick">
+  <image class="mine-top-part-image" src="https://img.88icon.com/download/jpg/20200819/6f5dba4c45fd07c0fef7068d777d006b_512_512.jpg" />
+  <view class="mine-user-info-container">
+    <text class="mine-user-name-text">{{username}}</text>
+    <view wx:if="{{username !== '未登录' && myRank!== null}}" class="user-rank-container">
+      <text class="mine-user-integral">本站积分: {{myRank.coinCount}}</text>
+      <text class="mine-user-integral" style="margin-left: 20rpx;">等级: {{myRank.level}}</text>
+      <text class="mine-user-integral" style="margin-left: 20rpx;">排名: {{myRank.rank}}</text>
+    </view>
+  </view>
+</view>
+
+<view class="user-center-info-container">
+  <mp-cells>
+    <mp-cell title="我的收藏" link="true" hover="true" bindtap="showMyCollect">
+      <image slot="icon" class="user-center-info-image-container" style="margin-right: 20rpx;" src="../../images/ic_black_heart.png" />
+    </mp-cell>
+    <mp-cell title="关于作者" link="true" bindtap="showAboutAuthor">
+      <image slot="icon" class="user-center-info-image-container" style="margin-right: 20rpx;" src="../../images/ic_black_face.png" />
+    </mp-cell>
+    <mp-cell title="测试页面" link="true" bindtap="jumpToTest">
+      <image slot="icon" class="user-center-info-image-container" style="margin-right: 20rpx;" src="../../images/ic_black_test.png" />
+    </mp-cell>
+    <mp-cell title="退出登录" link="true" wx:if="{{username !== '未登录'}}" bindtap="loginout">
+      <image slot="icon" class="user-center-info-image-container" style="margin-right: 20rpx;" src="../../images/ic_logout.png" />
+    </mp-cell>
+  </mp-cells>
+</view>
