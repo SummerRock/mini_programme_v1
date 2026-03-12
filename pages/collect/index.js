@@ -22,6 +22,22 @@ Page({
     this.requestCancelCollectArticle(item)
   },
 
+  jumpToDetail: function ({
+    currentTarget: {
+      dataset: {
+        item,
+      },
+    },
+  }) {
+    const url = item.link;
+    wx.setClipboardData({
+      data: url,
+      success(res) {
+        console.log('链接已复制:', url)
+      }
+    })
+  },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

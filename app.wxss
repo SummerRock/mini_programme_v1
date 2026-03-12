@@ -18,7 +18,7 @@
   box-sizing: border-box;
 }
 .common-text-size {
-  font-size: 22;
+  font-size: 22rpx;
 }
 .common-text-color-normal {
   color: #1AAD19;

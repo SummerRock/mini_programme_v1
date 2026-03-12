@@ -38,7 +38,7 @@ Page({
           })
           const searchResult = []
           for (const item of res.datas) {
-            searchResult.push({ text: item.title.replace(/<\/?em>/, '').replace(/<em class='highlight'>/, ''), value: item })
+            searchResult.push({ text: item.title.replace(/<\/?em[^>]*>/g, ''), value: item })
           }
           resolve(searchResult)
         }

@@ -21,4 +21,4 @@
     <view wx:if="{{index !== pagerList.length - 1}}" class="artical-list-divider" />
   </view>
 </block>
-<mp-loading show="{{loadingMore || pageOver}}" type="circle" tips="{{pageOver? '已全部加载' : '正在加载'}}" />
+<mp-loading show="{{loadingMore}}" type="circle" tips="{{pageOver ? '已全部加载' : '正在加载'}}" />

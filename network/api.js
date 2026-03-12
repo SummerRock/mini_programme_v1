@@ -27,7 +27,7 @@ module.exports = {
   treeList: ApiRootUrl + 'article/list/$1/json?cid=$2', //知识体系下的文章
 
   // 公众号
-  chapters: ApiRootUrl + 'wxarticle/chapters/json  ', //获取公众号列表
+  chapters: ApiRootUrl + 'wxarticle/chapters/json', //获取公众号列表
   chaptersList: ApiRootUrl + 'wxarticle/list/$1/$2/json', //查看某个公众号历史数据
 
   // 我的

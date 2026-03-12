@@ -8,7 +8,6 @@ export const global = observable({
   pagernumber: 0,
   loadingMore: false,
   pageOver: true,
-  myCollectCount: 0,
 
   get myCollectCount() {
     return this.pagerList.length

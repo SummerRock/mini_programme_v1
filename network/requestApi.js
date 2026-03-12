@@ -169,7 +169,7 @@ function wxCloud(name, data = {}) {
 
 /**
  * 从云函数获取openID
- */getOpenIDByCloud
+ */
 function getOpenIDByCloud() {
   // 获取openID
   wxCloud("openId").then((res) => {
@@ -179,9 +179,6 @@ function getOpenIDByCloud() {
     })
   }).catch((errMsg) => {
     console.log(errMsg);
-    that.setData({
-      isShowToDo: false
-    })
   });
 }
 

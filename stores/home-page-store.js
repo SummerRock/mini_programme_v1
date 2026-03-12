@@ -2,7 +2,7 @@
 const { Store } = require('westore')
 const requestApi = require('../network/requestApi');
 const api = require('../network/api');
-const PAGE_SIZE = require('../network/constants');
+const { PAGE_SIZE } = require('../network/constants');
 
 class HomePageStore extends Store {
   constructor() {
