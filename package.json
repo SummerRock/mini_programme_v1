@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@babel/runtime": "^7.28.6",
     "mobx-miniprogram": "^4.13.2",
     "mobx-miniprogram-bindings": "^2.1.5",
     "westore": "^0.1.8"

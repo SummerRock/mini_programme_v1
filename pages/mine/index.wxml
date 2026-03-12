@@ -1,5 +1,5 @@
 <view class="mine-top-part" bindtap="onUserInfoClick">
-  <image class="mine-top-part-image" src="https://img.88icon.com/download/jpg/20200819/6f5dba4c45fd07c0fef7068d777d006b_512_512.jpg" />
+  <image class="mine-top-part-image" src="../../images/ic_user_head.png" />
   <view class="mine-user-info-container">
     <text class="mine-user-name-text">{{username}}</text>
     <view wx:if="{{username !== '未登录' && myRank!== null}}" class="user-rank-container">

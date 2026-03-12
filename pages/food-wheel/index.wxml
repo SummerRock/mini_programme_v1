@@ -1,70 +1,43 @@
-<!--pages/food-wheel/index.wxml-->
-<view class="container">
-  <!-- 转盘区域 -->
-  <view class="wheel-container">
-    <view class="wheel-wrapper">
-      <canvas type="2d" id="wheelCanvas" class="wheel-canvas"></canvas>
-      <!-- 指针 -->
-      <view class="pointer"></view>
+<view style="padding:40rpx;background:#f0f0f0;min-height:100vh;">
+  <view style="text-align:center;font-size:36rpx;font-weight:bold;color:#333;margin-bottom:40rpx;">今天吃什么</view>
+  
+  <view style="width:500rpx;height:500rpx;margin:0 auto;border-radius:50%;background:#FFE66D;display:flex;align-items:center;justify-content:center;transform:rotate({{angle}}deg);box-shadow:0 4rpx 20rpx rgba(0,0,0,0.2);">
+    <view style="text-align:center;">
+      <view wx:for="{{foods}}" wx:key="index" style="font-size:28rpx;color:#333;padding:10rpx 0;">{{item}}</view>
     </view>
   </view>
-
-  <!-- 控制按钮 -->
-  <view class="control-panel">
-    <button class="spin-btn" bindtap="startSpin" disabled="{{isSpinning}}">
-      {{isSpinning ? '旋转中...' : '开始'}}
+  
+  <view style="text-align:center;margin-top:40rpx;">
+    <button style="display:inline-block;margin:10rpx;padding:20rpx 60rpx;background:#ff4757;color:#fff;border-radius:40rpx;" bindtap="spin" disabled="{{running}}">
+      {{running ? '转动中...' : '开始'}}
     </button>
-    <button class="edit-btn" bindtap="enterEditMode" disabled="{{isSpinning}}">编辑</button>
+    <button style="display:inline-block;margin:10rpx;padding:20rpx 60rpx;background:#667eea;color:#fff;border-radius:40rpx;" bindtap="edit">
+      编辑
+    </button>
   </view>
-
-  <!-- 结果展示弹窗 -->
-  <view class="result-modal" wx:if="{{showResult}}">
-    <view class="result-content">
-      <text class="result-title">今天吃</text>
-      <text class="result-food">{{selectedFood}}</text>
-      <button class="retry-btn" bindtap="resetSpin">再转一次</button>
+  
+  <view wx:if="{{showRes}}" style="position:fixed;inset:0;background:rgba(0,0,0,0.5);display:flex;align-items:center;justify-content:center;">
+    <view style="background:#fff;padding:60rpx;border-radius:20rpx;text-align:center;">
+      <view style="font-size:32rpx;color:#666;">今天吃</view>
+      <view style="font-size:56rpx;color:#ff4757;font-weight:bold;margin:20rpx 0;">{{res}}</view>
+      <button style="background:#667eea;color:#fff;padding:20rpx 60rpx;border-radius:40rpx;" bindtap="hideRes">再来</button>
     </view>
   </view>
-
-  <!-- 编辑模式 -->
-  <view class="edit-modal" wx:if="{{isEditMode}}">
-    <view class="edit-content">
-      <view class="edit-header">
-        <text class="edit-title">编辑食物列表</text>
-        <text class="edit-count">{{foodItems.length}}/{{MAX_FOOD_COUNT}}</text>
+  
+  <view wx:if="{{showEdit}}" style="position:fixed;inset:0;background:rgba(0,0,0,0.5);display:flex;align-items:center;justify-content:center;">
+    <view style="background:#fff;padding:40rpx;border-radius:20rpx;width:560rpx;">
+      <view style="font-size:32rpx;font-weight:bold;margin-bottom:20rpx;">编辑食物 ({{foods.length}}/8)</view>
+      <view wx:for="{{foods}}" wx:key="index" style="display:flex;align-items:center;margin-bottom:16rpx;">
+        <input style="flex:1;height:60rpx;background:#f5f5f5;padding:0 16rpx;border-radius:8rpx;" value="{{item}}" data-i="{{index}}" bindinput="chg" maxlength="4"/>
+        <view style="margin-left:16rpx;padding:10rpx 20rpx;background:#ff4757;color:#fff;border-radius:8rpx;" data-i="{{index}}" bindtap="del">删除</view>
       </view>
-      
-      <!-- 食物列表 -->
-      <view class="food-list">
-        <view class="food-item" wx:for="{{foodItems}}" wx:key="index">
-          <input 
-            class="food-input" 
-            value="{{item}}" 
-            data-index="{{index}}"
-            bindinput="onFoodInputChange"
-            bindblur="onFoodInputBlur"
-            maxlength="10"
-          />
-          <view class="delete-btn" bindtap="deleteFoodItem" data-index="{{index}}">删除</view>
-        </view>
+      <view style="display:flex;align-items:center;margin:20rpx 0;">
+        <input style="flex:1;height:60rpx;background:#f5f5f5;padding:0 16rpx;border-radius:8rpx;" placeholder="新增食物" value="{{newF}}" bindinput="newInput" maxlength="4"/>
+        <view style="margin-left:16rpx;padding:10rpx 20rpx;background:#667eea;color:#fff;border-radius:8rpx;" bindtap="addF">添加</view>
       </view>
-
-      <!-- 添加新食物 -->
-      <view class="add-section">
-        <input 
-          class="add-input" 
-          placeholder="输入新食物名称" 
-          value="{{newFoodName}}"
-          bindinput="onNewFoodInput"
-          maxlength="10"
-        />
-        <button class="add-btn" bindtap="addFoodItem">添加</button>
-      </view>
-
-      <!-- 操作按钮 -->
-      <view class="edit-actions">
-        <button class="cancel-btn" bindtap="exitEditMode">取消</button>
-        <button class="save-btn" bindtap="saveFoodItems">保存</button>
+      <view style="display:flex;gap:20rpx;margin-top:30rpx;">
+        <button style="flex:1;background:#eee;color:#666;padding:20rpx 0;border-radius:8rpx;" bindtap="cancelE">取消</button>
+        <button style="flex:1;background:#667eea;color:#fff;padding:20rpx 0;border-radius:8rpx;" bindtap="saveE">保存</button>
       </view>
     </view>
   </view>
