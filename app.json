@@ -7,7 +7,8 @@
         "pages/collect/index",
         "pages/register/index",
         "pages/test/index",
-        "pages/login/index"
+        "pages/login/index",
+        "pages/food-wheel/index"
     ],
     "window": {
         "backgroundTextStyle": "light",
@@ -44,5 +45,6 @@
         "kbone": true,
         "weui": true
     },
-    "sitemapLocation": "sitemap.json"
+    "sitemapLocation": "sitemap.json",
+    "lazyCodeLoading": "requiredComponents"
 }

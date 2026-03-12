@@ -5,6 +5,7 @@
     "include": []
   },
   "setting": {
+    "useCompilerPlugins": [],
     "urlCheck": true,
     "es6": false,
     "enhance": true,
@@ -39,7 +40,6 @@
     "disableUseStrict": false,
     "minifyWXML": true,
     "showES6CompileOption": false,
-    "useCompilerPlugins": false,
     "ignoreUploadUnusedFiles": true,
     "useStaticServer": true,
     "compileWorklet": false,

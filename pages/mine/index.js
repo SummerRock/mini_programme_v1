@@ -71,6 +71,15 @@ Page({
   },
 
   /**
+   * 跳转到食物转盘页面
+   */
+  jumpToFoodWheel: function () {
+    wx.navigateTo({
+      url: '/pages/food-wheel/index',
+    })
+  },
+
+  /**
    * 退出登陆
    */
   loginout: function () {

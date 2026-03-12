@@ -21,6 +21,9 @@
     <mp-cell title="测试页面" link="true" bindtap="jumpToTest">
       <image slot="icon" class="user-center-info-image-container" style="margin-right: 20rpx;" src="../../images/ic_black_test.png" />
     </mp-cell>
+    <mp-cell title="今天吃什么" link="true" bindtap="jumpToFoodWheel">
+      <image slot="icon" class="user-center-info-image-container" style="margin-right: 20rpx;" src="../../images/ic_red_heart.png" />
+    </mp-cell>
     <mp-cell title="退出登录" link="true" wx:if="{{username !== '未登录'}}" bindtap="loginout">
       <image slot="icon" class="user-center-info-image-container" style="margin-right: 20rpx;" src="../../images/ic_logout.png" />
     </mp-cell>
