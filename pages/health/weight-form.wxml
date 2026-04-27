@@ -1,0 +1,51 @@
+<view class="page-container">
+  <!-- 页面标题 -->
+  <view class="form-header">
+    <text class="form-title">{{mode === 'edit' ? '编辑体重' : '记录体重'}}</text>
+  </view>
+
+  <!-- 体重 -->
+  <view class="form-card">
+    <view class="form-item">
+      <view class="form-label">
+        <text>体重（kg）</text>
+        <text class="required">*</text>
+      </view>
+      <input
+        class="form-input"
+        type="digit"
+        placeholder="请输入体重"
+        value="{{weight}}"
+        data-field="weight"
+        bindinput="onInputChange"
+      />
+    </view>
+  </view>
+
+  <!-- 日期 -->
+  <view class="form-card">
+    <view class="form-item">
+      <view class="form-label">
+        <text>日期</text>
+        <text class="required">*</text>
+      </view>
+      <picker
+        mode="date"
+        value="{{date}}"
+        bindchange="onDateChange"
+      >
+        <view class="picker-value {{date ? '' : 'placeholder'}}">
+          {{date || '请选择日期'}}
+          <text class="picker-arrow">▼</text>
+        </view>
+      </picker>
+    </view>
+  </view>
+
+  <!-- 提交按钮 -->
+  <view class="btn-area">
+    <button class="submit-btn" disabled="{{submitting}}" loading="{{submitting}}" bindtap="submitForm">
+      {{submitting ? '提交中...' : '提交'}}
+    </button>
+  </view>
+</view>

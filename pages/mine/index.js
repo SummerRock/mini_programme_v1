@@ -10,6 +10,8 @@ Page({
   data: {
     username: '未登录',
     myRank: null,
+    healthLoggedIn: false,
+    avatarUrl: '',
   },
 
   /**
@@ -71,6 +73,15 @@ Page({
   },
 
   /**
+   * 跳转到健康管理页面
+   */
+  jumpToHealth: function () {
+    wx.navigateTo({
+      url: '/pages/health/index',
+    })
+  },
+
+  /**
    * 跳转到食物转盘页面
    */
   jumpToFoodWheel: function () {
@@ -95,9 +106,15 @@ Page({
             .then((res) => {
               this.setData({
                 username: '未登录',
-                myRank: null
+                myRank: null,
+                healthLoggedIn: false,
+                avatarUrl: '',
               })
               requestApi.clearLogin()
+              // 清除健康管理相关的本地存储
+              wx.removeStorageSync('health_logged_in')
+              wx.removeStorageSync('health_openid')
+              wx.removeStorageSync('health_user_info')
               wx.hideLoading({
                 success: (res) => {
                   wx.showToast({
@@ -105,16 +122,37 @@ Page({
                     icon: 'success',
                     duration: 200
                   })
+                  // 跳转到登录页
+                  setTimeout(() => {
+                    wx.reLaunch({
+                      url: '/pages/login/index',
+                    })
+                  }, 200)
                 },
               })
             }).catch((errMsg) => {
+              // 即使旧API退出失败，也清除健康管理本地存储
+              this.setData({
+                username: '未登录',
+                myRank: null,
+                healthLoggedIn: false,
+                avatarUrl: '',
+              })
+              wx.removeStorageSync('health_logged_in')
+              wx.removeStorageSync('health_openid')
+              wx.removeStorageSync('health_user_info')
               wx.hideLoading({
                 success: (res) => {
                   wx.showToast({
-                    title: '退出失败',
-                    icon: 'none',
+                    title: '退出成功',
+                    icon: 'success',
                     duration: 200
                   })
+                  setTimeout(() => {
+                    wx.reLaunch({
+                      url: '/pages/login/index',
+                    })
+                  }, 200)
                 },
               })
             });
@@ -147,13 +185,32 @@ Page({
 
   checkLoginStatus: function () {
     let localUserName = requestApi.getNickName()
-    if (!localUserName || localUserName.length < 1) {
+    const healthLoggedIn = wx.getStorageSync('health_logged_in')
+    const healthUserInfo = wx.getStorageSync('health_user_info')
+
+    if (healthLoggedIn && healthUserInfo) {
+      // 健康管理登录状态优先显示微信头像和昵称
       this.setData({
-        username: '未登录'
+        username: healthUserInfo.nickName || healthUserInfo.name || '健康用户',
+        avatarUrl: healthUserInfo.avatarUrl || '',
+        healthLoggedIn: true,
       })
+    } else if (!localUserName || localUserName.length < 1) {
+      if (healthLoggedIn) {
+        this.setData({
+          username: '健康用户',
+          healthLoggedIn: true,
+        })
+      } else {
+        this.setData({
+          username: '未登录',
+          healthLoggedIn: false,
+        })
+      }
     } else {
       this.setData({
-        username: localUserName
+        username: localUserName,
+        healthLoggedIn: healthLoggedIn || false,
       })
       this.getRankInfo()
     }

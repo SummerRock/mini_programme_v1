@@ -9,7 +9,10 @@
         "pages/test/index",
         "pages/login/index",
         "pages/food-wheel/index",
-        "pages/health/index"
+        "pages/health/index",
+        "pages/health/diet-form",
+        "pages/health/exercise-form",
+        "pages/health/weight-form"
     ],
     "window": {
         "backgroundTextStyle": "light",

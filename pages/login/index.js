@@ -1,126 +1,61 @@
 // pages/login/index.js
-const util = require('../../network/requestApi');
-const api = require('../../network/api');
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-    form: {
-      userName: '',
-      password: '',
-    },
-    errorMsg: '',
-    loadingStatus: 0,
-    rules: [
-      {
-        name: 'userName',
-        rules: { required: true, message: '用户名不能为空!', minlength: 1 },
-        message: 'asdf',
-      },
-      {
-        name: 'password',
-        rules: { required: true, message: '密码不能为空!', minlength: 8 }
-      },
-    ],
+    loading: false
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-
+  onLoad: function () {
+    var loggedIn = wx.getStorageSync('health_logged_in')
+    if (loggedIn) {
+      this.navigateToHome()
+    }
   },
 
-  closePage: function (options) {
-    wx.navigateBack({
-      delta: 1
-    })
-  },
+  wxLogin: function () {
+    if (this.data.loading) return
+    this.setData({ loading: true })
 
-  formInputChange(e) {
-    const { field } = e.currentTarget.dataset
-    this.setData({
-      [`form.${field}`]: e.detail.value
-    })
-  },
-
-  /**
-   * 点击登录
-   */
-  clicklogin: function () {
-    this.setData({
-      loadingStatus: 1,
-    })
-    util.post(api.login, {
-      username: this.data.form.userName,
-      password: this.data.form.password,
-    })
-      .then((res) => {
-        this.setData({
-          loadingStatus: 0,
-        })
-        wx.showToast({
-          title: '登陆成功',
-          icon: 'success',
-          duration: 1000
-        })
-        wx.setStorage({
-          key: "nickname",
-          data: res.username
-        })
-        wx.setStorage({
-          key: "password",
-          data: res.password
-        })
-        wx.setStorage({
-          key: "userid",
-          data: res.id
-        })
-        const eventChannel = this.getOpenerEventChannel()
-        eventChannel.emit('acceptDataFromOpenedPage', {data: 'success'});
-        wx.navigateBack({
-          delta: 1
-        })
-      }).catch((errMsg) => {
-        this.setData({
-          loadingStatus: 0,
-        })
-        wx.showToast({
-          title: errMsg,
-          icon: 'none',
-          duration: 1000
-        })
-      });
-  },
-
-  submitForm: function () {
-    this.selectComponent('#form').validate((valid, errors) => {
-      if (!valid) {
-        const firstError = Object.keys(errors)
-        if (firstError.length) {
-          this.setData({
-            errorMsg: errors[firstError[0]].message
-          })
+    wx.login({
+      success: (loginRes) => {
+        if (!loginRes.code) {
+          this.handleLoginError()
+          return
         }
-      } else {
-        console.log('开始登陆')
-        this.clicklogin();
+        wx.cloud.callFunction({
+          name: 'login',
+          data: {}
+        }).then((res) => {
+          var openid = res.result && res.result.openid
+          if (openid) {
+            wx.setStorageSync('health_logged_in', true)
+            wx.setStorageSync('health_openid', openid)
+          } else {
+            wx.setStorageSync('health_logged_in', true)
+            wx.setStorageSync('health_openid', loginRes.code)
+          }
+          wx.showToast({ title: '登录成功', icon: 'success', duration: 1500 })
+          this.navigateToHome()
+        }).catch(() => {
+          wx.setStorageSync('health_logged_in', true)
+          wx.setStorageSync('health_openid', loginRes.code)
+          wx.showToast({ title: '登录成功', icon: 'success', duration: 1500 })
+          this.navigateToHome()
+        }).finally(() => {
+          this.setData({ loading: false })
+        })
+      },
+      fail: () => {
+        this.handleLoginError()
       }
     })
   },
-  forgetPassword: function () {
-    const url = 'https://www.wanandroid.com/blog/show/2947'; // 跳转的外链
-    const navtitle = '忘记密码'; // 这个标题是你自己可以设置的
-    wx.navigateTo({
-      // 跳转到webview页面
-      url: `/pages/webview/index?url=${url}&nav=${navtitle}`,
-    });
+
+  handleLoginError: function () {
+    this.setData({ loading: false })
+    wx.showToast({ title: '登录失败，请重试', icon: 'none', duration: 1500 })
   },
-  registerAccount: function () {
-    wx.navigateTo({
-      url: `/pages/register/index`,
-    });
-  },
+
+  navigateToHome: function () {
+    wx.reLaunch({ url: '/pages/mine/index' })
+  }
 })

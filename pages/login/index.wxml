@@ -1,24 +1,10 @@
 <!--pages/login/index.wxml-->
-<view class="login-tab-part">
-  <mp-icon type="field" icon="back" color="black" size="{{14}}" bindtap="closePage"></mp-icon>
+<view class="login-container">
+  <view class="login-logo-section">
+    <image class="login-logo" src="/images/ic_red_heart.png" mode="aspectFit"></image>
+    <text class="login-title">健康管理小程序</text>
+  </view>
+  <view class="login-btn-section">
+    <button class="login-btn" type="primary" loading="{{loading}}" disabled="{{loading}}" bindtap="wxLogin">微信登录</button>
+  </view>
 </view>
-<mp-form-page title="登陆账号">
-  <mp-toptips ext-class="form-top-tip" msg="{{errorMsg}}" type="error" show="{{errorMsg}}" delay="1500"></mp-toptips>
-  <mp-form id="form" rules="{{rules}}" models="{{form}}">
-    <mp-cells title="请输入正确的账号和密码">
-      <mp-cell title="用户名" show-error="true" prop="userName">
-        <input type="text" placeholder="请输入用户名" data-field="userName" bindinput="formInputChange" />
-      </mp-cell>
-      <mp-cell title="密码" show-error="true" prop="password">
-        <input type="text" placeholder="请输入密码" password="true" data-field="password" bindinput="formInputChange" />
-      </mp-cell>
-    </mp-cells>
-  </mp-form>
-  <view class="forget-password-container">
-    <text class='register-txt-style' bindtap="registerAccount">注册</text>
-    <text class='forget-password-txt-style' bindtap="forgetPassword">忘记密码</text>
-  </view>
-  <view slot="button">
-    <button class="weui-btn" type="primary" loading="{{loadingStatus !== 0 }}" bindtap="submitForm">确定</button>
-  </view>
-</mp-form-page>

@@ -1,5 +1,5 @@
 <view class="mine-top-part" bindtap="onUserInfoClick">
-  <image class="mine-top-part-image" src="../../images/ic_user_head.png" />
+  <image class="mine-top-part-image" src="{{avatarUrl || '../../images/ic_user_head.png'}}" />
   <view class="mine-user-info-container">
     <text class="mine-user-name-text">{{username}}</text>
     <view wx:if="{{username !== '未登录' && myRank!== null}}" class="user-rank-container">
@@ -21,10 +21,13 @@
     <mp-cell title="测试页面" link="true" bindtap="jumpToTest">
       <image slot="icon" class="user-center-info-image-container" style="margin-right: 20rpx;" src="../../images/ic_black_test.png" />
     </mp-cell>
-    <mp-cell title="今天吃什么" link="true" bindtap="jumpToFoodWheel">
+    <mp-cell title="健康管理" link="true" bindtap="jumpToHealth">
       <image slot="icon" class="user-center-info-image-container" style="margin-right: 20rpx;" src="../../images/ic_red_heart.png" />
     </mp-cell>
-    <mp-cell title="退出登录" link="true" wx:if="{{username !== '未登录'}}" bindtap="loginout">
+    <mp-cell title="今天吃什么" link="true" bindtap="jumpToFoodWheel">
+      <image slot="icon" class="user-center-info-image-container" style="margin-right: 20rpx;" src="../../images/ic_black_heart.png" />
+    </mp-cell>
+    <mp-cell title="退出登录" link="true" wx:if="{{username !== '未登录' || healthLoggedIn}}" bindtap="loginout">
       <image slot="icon" class="user-center-info-image-container" style="margin-right: 20rpx;" src="../../images/ic_logout.png" />
     </mp-cell>
   </mp-cells>

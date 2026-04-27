@@ -1,48 +1,88 @@
-<view class="container">
-  <view class="header">
-    <text class="title">健康追踪</text>
-    <text class="date">{{currentDate}}</text>
+<view class="page-container">
+  <!-- 日期选择器 -->
+  <view class="date-picker-section">
+    <picker mode="date" value="{{currentDate}}" bindchange="onDateChange">
+      <view class="date-picker-inner">
+        <text class="date-label">当前日期</text>
+        <view class="date-value-wrap">
+          <text class="date-value">{{currentDate}}</text>
+          <text class="date-arrow">▼</text>
+        </view>
+      </view>
+    </picker>
   </view>
 
-  <!-- 饮食记录 -->
+  <!-- 饮食记录分区 -->
   <view class="section">
-    <view class="section-title">🍽️ 饮食记录</view>
-    <view wx:if="{{dietList.length === 0}}" class="empty">暂无记录</view>
-    <view wx:for="{{dietList}}" wx:key="_id" class="record-item">
-      <view class="record-main">
-        <text class="record-name">{{item.foodName}}</text>
-        <text class="record-tag">{{item.mealType}}</text>
+    <view class="section-header">
+      <text class="section-title">🍽️ 饮食记录</text>
+      <view class="add-btn" bindtap="navigateToDietForm">+ 添加</view>
+    </view>
+    <view wx:if="{{dietList.length === 0}}" class="empty-placeholder">暂无记录</view>
+    <view
+      wx:for="{{dietList}}"
+      wx:key="_id"
+      class="record-card"
+      data-record="{{item}}"
+      data-type="diet"
+      bindtap="onRecordTap"
+      bindlongpress="onRecordLongPress"
+    >
+      <view class="record-card-main">
+        <text class="record-card-name">{{item.foodName}}</text>
+        <text class="record-card-tag">{{item.mealType}}</text>
       </view>
-      <view class="record-detail">
-        <text wx:if="{{item.calories}}" class="record-cal">{{item.calories}} 千卡</text>
-        <text wx:if="{{item.note}}" class="record-note">{{item.note}}</text>
+      <view wx:if="{{item.calories}}" class="record-card-detail">
+        <text class="record-card-calories">{{item.calories}} 千卡</text>
       </view>
     </view>
   </view>
 
-  <!-- 运动记录 -->
+  <!-- 运动记录分区 -->
   <view class="section">
-    <view class="section-title">🏃 运动记录</view>
-    <view wx:if="{{exerciseList.length === 0}}" class="empty">暂无记录</view>
-    <view wx:for="{{exerciseList}}" wx:key="_id" class="record-item">
-      <view class="record-main">
-        <text class="record-name">{{item.exerciseType}}</text>
-        <text class="record-tag">{{item.duration}} 分钟</text>
+    <view class="section-header">
+      <text class="section-title">🏃 运动记录</text>
+      <view class="add-btn" bindtap="navigateToExerciseForm">+ 添加</view>
+    </view>
+    <view wx:if="{{exerciseList.length === 0}}" class="empty-placeholder">暂无记录</view>
+    <view
+      wx:for="{{exerciseList}}"
+      wx:key="_id"
+      class="record-card"
+      data-record="{{item}}"
+      data-type="exercise"
+      bindtap="onRecordTap"
+      bindlongpress="onRecordLongPress"
+    >
+      <view class="record-card-main">
+        <text class="record-card-name">{{item.exerciseType}}</text>
+        <text class="record-card-tag">{{item.duration}} 分钟</text>
       </view>
-      <view class="record-detail">
-        <text wx:if="{{item.calories}}" class="record-cal">消耗 {{item.calories}} 千卡</text>
+      <view wx:if="{{item.calories}}" class="record-card-detail">
+        <text class="record-card-calories">消耗 {{item.calories}} 千卡</text>
       </view>
     </view>
   </view>
 
-  <!-- 体重记录 -->
+  <!-- 体重记录分区 -->
   <view class="section">
-    <view class="section-title">⚖️ 体重记录</view>
-    <view wx:if="{{weightList.length === 0}}" class="empty">暂无记录</view>
-    <view wx:for="{{weightList}}" wx:key="_id" class="record-item">
-      <view class="record-main">
-        <text class="record-name">{{item.weight}} kg</text>
-        <text class="record-tag">{{item.date}}</text>
+    <view class="section-header">
+      <text class="section-title">⚖️ 体重记录</text>
+      <view class="add-btn" bindtap="navigateToWeightForm">+ 添加</view>
+    </view>
+    <view wx:if="{{weightList.length === 0}}" class="empty-placeholder">暂无记录</view>
+    <view
+      wx:for="{{weightList}}"
+      wx:key="_id"
+      class="record-card"
+      data-record="{{item}}"
+      data-type="weight"
+      bindtap="onRecordTap"
+      bindlongpress="onRecordLongPress"
+    >
+      <view class="record-card-main">
+        <text class="record-card-name">{{item.weight}} kg</text>
+        <text class="record-card-tag">{{item.date}}</text>
       </view>
     </view>
   </view>

@@ -1,0 +1,85 @@
+.page-container {
+  padding: 24rpx;
+  background: #F5F5F5;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+.form-header {
+  padding: 16rpx 0 24rpx;
+}
+
+.form-title {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+.form-card {
+  background: #FFFFFF;
+  border-radius: 16rpx;
+  padding: 24rpx 32rpx;
+  margin-bottom: 24rpx;
+}
+
+.form-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-label {
+  font-size: 28rpx;
+  color: #666;
+  margin-bottom: 16rpx;
+}
+
+.required {
+  color: #FF4D4F;
+  margin-left: 4rpx;
+}
+
+.form-input {
+  font-size: 30rpx;
+  color: #333;
+  padding: 16rpx 0;
+  border-bottom: 1rpx solid #EEEEEE;
+}
+
+.picker-value {
+  font-size: 30rpx;
+  color: #333;
+  padding: 16rpx 0;
+  border-bottom: 1rpx solid #EEEEEE;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.picker-value.placeholder {
+  color: #CCCCCC;
+}
+
+.picker-arrow {
+  font-size: 20rpx;
+  color: #1AAD19;
+}
+
+.btn-area {
+  margin-top: 48rpx;
+  padding: 0 32rpx;
+}
+
+.submit-btn {
+  background: #1AAD19;
+  color: #FFFFFF;
+  font-size: 32rpx;
+  border-radius: 48rpx;
+  height: 88rpx;
+  line-height: 88rpx;
+  border: none;
+}
+
+.submit-btn[disabled] {
+  background: #9ED99D;
+  color: #FFFFFF;
+}

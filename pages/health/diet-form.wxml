@@ -1,0 +1,83 @@
+<view class="page-container">
+  <!-- 页面标题 -->
+  <view class="form-header">
+    <text class="form-title">{{mode === 'edit' ? '编辑饮食' : '添加饮食'}}</text>
+  </view>
+
+  <!-- 食物名称 -->
+  <view class="form-card">
+    <view class="form-item">
+      <view class="form-label">
+        <text>食物名称</text>
+        <text class="required">*</text>
+      </view>
+      <input
+        class="form-input"
+        placeholder="请输入食物名称"
+        value="{{foodName}}"
+        data-field="foodName"
+        bindinput="onInputChange"
+      />
+    </view>
+  </view>
+
+  <!-- 用餐类型 -->
+  <view class="form-card">
+    <view class="form-item">
+      <view class="form-label">
+        <text>用餐类型</text>
+        <text class="required">*</text>
+      </view>
+      <picker
+        range="{{mealTypeLabels}}"
+        value="{{mealTypeIndex}}"
+        bindchange="onMealTypeChange"
+      >
+        <view class="picker-value {{mealTypeIndex >= 0 ? '' : 'placeholder'}}">
+          {{mealTypeIndex >= 0 ? mealTypeLabels[mealTypeIndex] : '请选择用餐类型'}}
+          <text class="picker-arrow">▼</text>
+        </view>
+      </picker>
+    </view>
+  </view>
+
+  <!-- 热量 -->
+  <view class="form-card">
+    <view class="form-item">
+      <view class="form-label">
+        <text>热量（千卡）</text>
+      </view>
+      <input
+        class="form-input"
+        type="digit"
+        placeholder="请输入热量（选填）"
+        value="{{calories}}"
+        data-field="calories"
+        bindinput="onInputChange"
+      />
+    </view>
+  </view>
+
+  <!-- 备注 -->
+  <view class="form-card">
+    <view class="form-item">
+      <view class="form-label">
+        <text>备注</text>
+      </view>
+      <input
+        class="form-input"
+        placeholder="请输入备注（选填）"
+        value="{{note}}"
+        data-field="note"
+        bindinput="onInputChange"
+      />
+    </view>
+  </view>
+
+  <!-- 提交按钮 -->
+  <view class="btn-area">
+    <button class="submit-btn" disabled="{{submitting}}" loading="{{submitting}}" bindtap="submitForm">
+      {{submitting ? '提交中...' : '提交'}}
+    </button>
+  </view>
+</view>

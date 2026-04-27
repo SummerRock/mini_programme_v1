@@ -4,5 +4,12 @@
     "mobx-miniprogram": "^4.13.2",
     "mobx-miniprogram-bindings": "^2.1.5",
     "westore": "^0.1.8"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "fast-check": "^3.23.2"
+  },
+  "scripts": {
+    "test": "jest"
   }
 }

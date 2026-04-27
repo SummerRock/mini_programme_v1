@@ -1,0 +1,65 @@
+<view class="page-container">
+  <!-- 页面标题 -->
+  <view class="form-header">
+    <text class="form-title">{{mode === 'edit' ? '编辑运动' : '添加运动'}}</text>
+  </view>
+
+  <!-- 运动类型 -->
+  <view class="form-card">
+    <view class="form-item">
+      <view class="form-label">
+        <text>运动类型</text>
+        <text class="required">*</text>
+      </view>
+      <input
+        class="form-input"
+        placeholder="请输入运动类型"
+        value="{{exerciseType}}"
+        data-field="exerciseType"
+        bindinput="onInputChange"
+      />
+    </view>
+  </view>
+
+  <!-- 运动时长 -->
+  <view class="form-card">
+    <view class="form-item">
+      <view class="form-label">
+        <text>运动时长（分钟）</text>
+        <text class="required">*</text>
+      </view>
+      <input
+        class="form-input"
+        type="digit"
+        placeholder="请输入运动时长"
+        value="{{duration}}"
+        data-field="duration"
+        bindinput="onInputChange"
+      />
+    </view>
+  </view>
+
+  <!-- 消耗热量 -->
+  <view class="form-card">
+    <view class="form-item">
+      <view class="form-label">
+        <text>消耗热量（千卡）</text>
+      </view>
+      <input
+        class="form-input"
+        type="digit"
+        placeholder="请输入消耗热量（选填）"
+        value="{{calories}}"
+        data-field="calories"
+        bindinput="onInputChange"
+      />
+    </view>
+  </view>
+
+  <!-- 提交按钮 -->
+  <view class="btn-area">
+    <button class="submit-btn" disabled="{{submitting}}" loading="{{submitting}}" bindtap="submitForm">
+      {{submitting ? '提交中...' : '提交'}}
+    </button>
+  </view>
+</view>

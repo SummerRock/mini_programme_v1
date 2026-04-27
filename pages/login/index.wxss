@@ -1,52 +1,40 @@
-.login-tab-part {
-  margin-top: 70rpx;
-  margin-left: 40rpx;
-}
-.login-tab-exit-image {
-  width: 18rpx;
-  height: 34rpx;
-}
-.login-top-part {
-  width: 100%;
+.login-container {
   display: flex;
-  flex-direction: row;
-  margin-top: 150rpx;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
-}
-.login-top-part-text {
-  color: black;
-}
-.login-divider-style {
-  height: 1rpx;
-  margin: 0rpx 32rpx;
-  background-color: #F1F1F1;
-}
-.login-input-part-style {
-  display: flex;
-  flex-direction: row;
-  padding: 30rpx 32rpx;
-}
-.login-input-part-title {
-  width: 150rpx;
-  display: block;
-}
-.form-top-tip {
-  margin-top: 150rpx;
-}
-.forget-password-container {
-  display: flex;
-  margin-top: 20rpx;
-  flex-direction: row;
-  justify-content: flex-end;
-  margin-right: 70rpx;
+  height: 100vh;
+  background-color: #F5F5F5;
 }
 
-.forget-password-txt-style {
-  font-size: 14px;
-  margin-left: 10rpx;
-  color: #888888;
+.login-logo-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 120rpx;
 }
-.register-txt-style {
-  font-size: 14px;
-  color: #1AAD19;
+
+.login-logo {
+  width: 160rpx;
+  height: 160rpx;
+  margin-bottom: 30rpx;
+}
+
+.login-title {
+  font-size: 40rpx;
+  font-weight: bold;
+  color: #333333;
+}
+
+.login-btn-section {
+  width: 80%;
+}
+
+.login-btn {
+  background-color: #1AAD19;
+  color: #FFFFFF;
+  font-size: 34rpx;
+  border-radius: 10rpx;
+  height: 90rpx;
+  line-height: 90rpx;
 }
