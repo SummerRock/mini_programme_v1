@@ -13,6 +13,9 @@ $RECYCLE.BIN/
 # Node.js
 node_modules/
 
+# 环境变量
+.env.local
+
 # 本地编译参数文件
 project.private.config.json
 
