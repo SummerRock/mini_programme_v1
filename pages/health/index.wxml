@@ -1,0 +1,49 @@
+<view class="container">
+  <view class="header">
+    <text class="title">健康追踪</text>
+    <text class="date">{{currentDate}}</text>
+  </view>
+
+  <!-- 饮食记录 -->
+  <view class="section">
+    <view class="section-title">🍽️ 饮食记录</view>
+    <view wx:if="{{dietList.length === 0}}" class="empty">暂无记录</view>
+    <view wx:for="{{dietList}}" wx:key="_id" class="record-item">
+      <view class="record-main">
+        <text class="record-name">{{item.foodName}}</text>
+        <text class="record-tag">{{item.mealType}}</text>
+      </view>
+      <view class="record-detail">
+        <text wx:if="{{item.calories}}" class="record-cal">{{item.calories}} 千卡</text>
+        <text wx:if="{{item.note}}" class="record-note">{{item.note}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 运动记录 -->
+  <view class="section">
+    <view class="section-title">🏃 运动记录</view>
+    <view wx:if="{{exerciseList.length === 0}}" class="empty">暂无记录</view>
+    <view wx:for="{{exerciseList}}" wx:key="_id" class="record-item">
+      <view class="record-main">
+        <text class="record-name">{{item.exerciseType}}</text>
+        <text class="record-tag">{{item.duration}} 分钟</text>
+      </view>
+      <view class="record-detail">
+        <text wx:if="{{item.calories}}" class="record-cal">消耗 {{item.calories}} 千卡</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 体重记录 -->
+  <view class="section">
+    <view class="section-title">⚖️ 体重记录</view>
+    <view wx:if="{{weightList.length === 0}}" class="empty">暂无记录</view>
+    <view wx:for="{{weightList}}" wx:key="_id" class="record-item">
+      <view class="record-main">
+        <text class="record-name">{{item.weight}} kg</text>
+        <text class="record-tag">{{item.date}}</text>
+      </view>
+    </view>
+  </view>
+</view>

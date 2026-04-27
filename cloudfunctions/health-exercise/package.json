@@ -1,0 +1,16 @@
+{
+  "name": "health-exercise",
+  "version": "1.0.0",
+  "description": "健康追踪 - 运动记录云函数",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "dependencies": {
+    "wx-server-sdk": "~2.6.1"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "fast-check": "^3.15.0"
+  }
+}

@@ -8,7 +8,8 @@
         "pages/register/index",
         "pages/test/index",
         "pages/login/index",
-        "pages/food-wheel/index"
+        "pages/food-wheel/index",
+        "pages/health/index"
     ],
     "window": {
         "backgroundTextStyle": "light",

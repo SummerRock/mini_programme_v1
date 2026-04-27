@@ -1,0 +1,16 @@
+{
+  "name": "health-weight",
+  "version": "1.0.0",
+  "description": "健康追踪 - 体重记录云函数",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "dependencies": {
+    "wx-server-sdk": "~2.6.1"
+  },
+  "devDependencies": {
+    "fast-check": "^3.23.2",
+    "jest": "^29.7.0"
+  }
+}
