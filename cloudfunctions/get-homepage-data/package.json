@@ -1,0 +1,18 @@
+{
+  "name": "get-homepage-data",
+  "version": "1.0.0",
+  "description": "首页数据云函数 - 获取健康小贴士和正能量断句",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "wx-server-sdk": "~2.6.1"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "fast-check": "^3.15.0"
+  }
+}

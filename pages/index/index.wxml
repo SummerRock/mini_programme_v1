@@ -1,24 +1,47 @@
-<wxs src="./index_tool.wxs" module="tools"></wxs>
-<swiper class="card-swiper" indicator-dots="true" indicator-color='#888888' indicator-active-color='#1AAD19' autoplay='true' circular='true' interval='3000' previous-margin="40rpx" next-margin="40rpx" duration='500' bindchange="cardSwiper">
-  <swiper-item wx:for="{{banner}}" wx:key="id" item-id="item.id" class="swiper-item-style">
-    <image class='banner-image' src="{{item.imagePath}}"></image>
-  </swiper-item>
-</swiper>
+<wxs module="textUtils">
+function truncate(content, maxLength) {
+  if (!content) return ''
+  if (content.length > maxLength) {
+    return content.substring(0, maxLength) + '...'
+  }
+  return content
+}
+module.exports = { truncate: truncate }
+</wxs>
 
-<block wx:for="{{pagerList}}" wx:key="id">
-  <view class='artical-list-container' bindtap='jumpToDetail' data-index='{{index}}' data-item='{{item}}'>
-    <view class="artical-list-horizontal-container">
-      <view class='artical-list-main-container'>
-        <text class="title" style="font-size: 17px;">{{item.title}}</text>
-        <view class="second-line-container">
-          <text style="font-size: 14px; color: #AAAAAA;">{{item.shareUser}}</text>
-          <view style="flex-grow: 1;" />
-          <button class="weui-btn mini-btn weui-btn-custom" type="{{item.collect? 'default':'primary'}}" size="mini" data-item='{{item}}' bindtap="collectArticle">{{item.collect? '已收藏':'收藏'}}</button>
-        </view>
-      </view>
-      <mp-icon type="field" icon="arrow" color="black" size="{{14}}"></mp-icon>
-    </view>
-    <view wx:if="{{index !== pagerList.length - 1}}" class="artical-list-divider" />
+<!-- Greeting_Banner -->
+<view class="greeting-banner">
+  <text class="greeting-text">{{greeting}}</text>
+  <text class="greeting-date">{{displayDate}}</text>
+</view>
+
+<!-- Quotes_Section -->
+<view class="section quotes-section">
+  <text class="section-title">✨ 每日正能量</text>
+  <view wx:if="{{loading}}" class="loading-placeholder">加载中...</view>
+  <view wx:elif="{{quotesLoadError}}" class="error-text">内容加载失败</view>
+  <view wx:else class="quote-card">
+    <text class="quote-text">"{{currentQuote.text}}"</text>
+    <text wx:if="{{currentQuote.author}}" class="quote-author">—— {{currentQuote.author}}</text>
   </view>
-</block>
-<mp-loading show="{{loadingMore}}" type="circle" tips="{{pageOver ? '已全部加载' : '正在加载'}}" />
+</view>
+
+<!-- Tips_Section -->
+<view class="section tips-section">
+  <text class="section-title">💡 健康小贴士</text>
+  <view wx:if="{{loading}}" class="loading-placeholder">加载中...</view>
+  <view wx:elif="{{tipsLoadError}}" class="error-text">内容加载失败</view>
+  <block wx:else>
+    <view
+      wx:for="{{tipsList}}"
+      wx:key="id"
+      class="tip-card {{expandedTipId === item.id ? 'tip-card-expanded' : ''}}"
+      data-id="{{item.id}}"
+      bindtap="onTipTap"
+    >
+      <text class="tip-title">{{item.title}}</text>
+      <text class="tip-content" wx:if="{{expandedTipId === item.id}}">{{item.content}}</text>
+      <text class="tip-content" wx:else>{{textUtils.truncate(item.content, 30)}}</text>
+    </view>
+  </block>
+</view>
