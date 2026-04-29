@@ -1,7 +1,71 @@
 <!--pages/search/index.wxml-->
-<mp-searchbar search="{{search}}" bindselectresult="selectResult" />
-<view wx:if="{{showBottomNavi}}" class="weui-footer" style="margin: 20rpx 0rpx;">
-  <view class="weui-footer__links ">
-    <navigator url="/pages/webview/index?url=https://www.wanandroid.com/&nav=搜索更多" class="weui-footer__link">搜索更多? 点击前往</navigator>
+
+<!-- 未登录状态 -->
+<view wx:if="{{!isLoggedIn}}" class="not-logged-in">
+  <text class="not-logged-in-text">请先登录查看健康统计</text>
+  <view class="login-btn" bindtap="goToLogin">去登录</view>
+</view>
+
+<!-- 加载状态 -->
+<view wx:elif="{{loading}}" class="loading-container">
+  <text class="loading-text">加载中...</text>
+</view>
+
+<!-- 主内容 -->
+<view wx:else class="stats-page">
+
+  <!-- 食物热量提醒区 -->
+  <view class="tips-section">
+    <view wx:if="{{tipsLoadError}}" class="tips-empty">
+      <text class="tips-empty-text">暂无热量提醒</text>
+    </view>
+    <scroll-view wx:else scroll-x class="tips-scroll">
+      <view class="tips-list">
+        <view class="tip-card" wx:for="{{calorieTips}}" wx:key="foodName">
+          <text class="tip-food-name">{{item.foodName}}</text>
+          <text class="tip-portion">{{item.portion}}</text>
+          <text class="tip-calories">{{item.calories}}千卡</text>
+        </view>
+      </view>
+    </scroll-view>
   </view>
+
+  <!-- 体重趋势图区 -->
+  <view class="chart-card">
+    <text class="chart-title">体重趋势（近30天）</text>
+    <view wx:if="{{weightEmpty}}" class="chart-empty">
+      <text class="chart-empty-text">暂无体重记录</text>
+    </view>
+    <view wx:else class="chart-container">
+      <view class="chart-bars">
+        <view class="chart-bar-wrapper" wx:for="{{weightChartData}}" wx:key="date">
+          <view class="chart-bar-inner" style="height: {{item.heightPercent * 100}}%;">
+            <text wx:if="{{item.isMax || item.isMin}}" class="chart-bar-label">{{item.weight}}kg</text>
+            <view class="chart-bar"></view>
+          </view>
+          <text class="chart-bar-date">{{item.label}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 热量趋势图区 -->
+  <view class="chart-card">
+    <text class="chart-title">热量趋势（近7天）</text>
+    <view wx:if="{{calorieEmpty}}" class="chart-empty">
+      <text class="chart-empty-text">暂无饮食记录</text>
+    </view>
+    <view wx:else class="chart-container">
+      <view class="chart-bars">
+        <view class="chart-bar-wrapper" wx:for="{{calorieChartData}}" wx:key="date">
+          <view class="chart-bar-inner" style="height: {{item.heightPercent * 100}}%;">
+            <text wx:if="{{item.isMax || item.isMin}}" class="chart-bar-label">{{item.totalCalories}}千卡</text>
+            <view class="chart-bar"></view>
+          </view>
+          <text class="chart-bar-date">{{item.label}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
 </view>

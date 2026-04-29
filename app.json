@@ -31,10 +31,10 @@
                 "text": "首页"
             },
             {
-                "iconPath": "images/ic_search_gray.png",
-                "selectedIconPath": "images/ic_search_green.png",
+                "iconPath": "images/stats-normal-state.png",
+                "selectedIconPath": "images/stats-selected-state.png",
                 "pagePath": "pages/search/index",
-                "text": "搜索"
+                "text": "统计"
             },
             {
                 "iconPath": "images/user-normal-state.png",

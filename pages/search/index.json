@@ -1,6 +1,4 @@
 {
-  "usingComponents": {
-    "mp-searchbar": "weui-miniprogram/searchbar/searchbar"
-  },
-  "navigationBarTitleText": "搜一搜"
+  "usingComponents": {},
+  "navigationBarTitleText": "健康统计"
 }

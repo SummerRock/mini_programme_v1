@@ -1,4 +1,195 @@
 /* pages/search/index.wxss */
-.result {
-  font-size: 14px;
+
+/* 页面背景 */
+page {
+  background-color: #F5F5F5;
+}
+
+/* ========== 未登录状态 ========== */
+.not-logged-in {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 0 48rpx;
+}
+
+.not-logged-in-text {
+  font-size: 32rpx;
+  color: #999999;
+  margin-bottom: 40rpx;
+}
+
+.login-btn {
+  width: 400rpx;
+  height: 88rpx;
+  line-height: 88rpx;
+  text-align: center;
+  background-color: #1AAD19;
+  color: #FFFFFF;
+  font-size: 32rpx;
+  border-radius: 44rpx;
+}
+
+/* ========== 加载状态 ========== */
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.loading-text {
+  font-size: 28rpx;
+  color: #999999;
+}
+
+/* ========== 主内容区 ========== */
+.stats-page {
+  min-height: 100vh;
+  background-color: #F5F5F5;
+  padding-bottom: 24rpx;
+}
+
+/* ========== 食物热量提醒区 ========== */
+.tips-section {
+  padding: 24rpx 0 0;
+}
+
+.tips-empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40rpx 24rpx;
+}
+
+.tips-empty-text {
+  font-size: 28rpx;
+  color: #999999;
+}
+
+.tips-scroll {
+  white-space: nowrap;
+  padding: 0 24rpx;
+}
+
+.tips-list {
+  display: flex;
+  flex-direction: row;
+  padding: 8rpx 0 24rpx;
+}
+
+.tip-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 220rpx;
+  min-width: 220rpx;
+  padding: 24rpx;
+  margin-right: 20rpx;
+  background-color: #FFFFFF;
+  border-radius: 16rpx;
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.06);
+}
+
+.tip-food-name {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333333;
+  margin-bottom: 8rpx;
+}
+
+.tip-portion {
+  font-size: 24rpx;
+  color: #999999;
+  margin-bottom: 8rpx;
+}
+
+.tip-calories {
+  font-size: 28rpx;
+  color: #1AAD19;
+  font-weight: bold;
+}
+
+/* ========== 图表卡片通用样式 ========== */
+.chart-card {
+  background-color: #FFFFFF;
+  border-radius: 16rpx;
+  margin: 24rpx 24rpx 0;
+  padding: 28rpx;
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.06);
+}
+
+.chart-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333333;
+  margin-bottom: 24rpx;
+}
+
+.chart-empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60rpx 0;
+}
+
+.chart-empty-text {
+  font-size: 28rpx;
+  color: #999999;
+}
+
+/* ========== 柱状图区域 ========== */
+.chart-container {
+  padding: 16rpx 0;
+}
+
+.chart-bars {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  height: 400rpx;
+}
+
+.chart-bar-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  justify-content: flex-end;
+}
+
+.chart-bar-inner {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  min-height: 8rpx;
+}
+
+.chart-bar {
+  width: 32rpx;
+  min-height: 8rpx;
+  height: 100%;
+  background-color: #1AAD19;
+  border-radius: 8rpx 8rpx 0 0;
+}
+
+.chart-bar-label {
+  font-size: 20rpx;
+  color: #1AAD19;
+  font-weight: bold;
+  margin-bottom: 4rpx;
+  white-space: nowrap;
+}
+
+.chart-bar-date {
+  font-size: 20rpx;
+  color: #999999;
+  margin-top: 8rpx;
+  white-space: nowrap;
 }
