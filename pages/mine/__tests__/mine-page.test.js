@@ -529,3 +529,91 @@ describe('Page logic unit tests', function () {
     expect(pageConfig.loadDietRecords).toHaveBeenCalled();
   });
 });
+
+
+// --- Task 5.1: 隐私政策功能测试 ---
+describe('隐私政策功能测试', function () {
+  var pageConfig;
+  var originalWx;
+  var originalPage;
+
+  beforeEach(function () {
+    originalWx = global.wx;
+    originalPage = global.Page;
+
+    global.wx = {
+      getStorageSync: jest.fn(),
+      navigateTo: jest.fn(),
+      showModal: jest.fn(),
+      removeStorageSync: jest.fn(),
+    };
+
+    pageConfig = null;
+    global.Page = function (config) {
+      pageConfig = config;
+    };
+
+    jest.resetModules();
+    require('../index');
+  });
+
+  afterEach(function () {
+    global.wx = originalWx;
+    global.Page = originalPage;
+  });
+
+  // **Validates: Requirements 2.1**
+  test('showPrivacyModal initial value is false', function () {
+    expect(pageConfig.data.showPrivacyModal).toBe(false);
+  });
+
+  // **Validates: Requirements 2.1**
+  test('openPrivacyModal calls setData with { showPrivacyModal: true }', function () {
+    pageConfig.setData = jest.fn();
+    pageConfig.openPrivacyModal.call(pageConfig);
+    expect(pageConfig.setData).toHaveBeenCalledWith({ showPrivacyModal: true });
+  });
+
+  // **Validates: Requirements 2.6**
+  test('closePrivacyModal calls setData with { showPrivacyModal: false }', function () {
+    pageConfig.setData = jest.fn();
+    pageConfig.closePrivacyModal.call(pageConfig);
+    expect(pageConfig.setData).toHaveBeenCalledWith({ showPrivacyModal: false });
+  });
+
+  // **Validates: Requirements 3.1**
+  test('privacySections array contains 8 sections', function () {
+    expect(pageConfig.data.privacySections).toHaveLength(8);
+  });
+
+  // **Validates: Requirements 3.1**
+  test('each section object has non-empty title and content fields', function () {
+    pageConfig.data.privacySections.forEach(function (section) {
+      expect(typeof section.title).toBe('string');
+      expect(section.title.length).toBeGreaterThan(0);
+      expect(typeof section.content).toBe('string');
+      expect(section.content.length).toBeGreaterThan(0);
+    });
+  });
+
+  // **Validates: Requirements 3.1**
+  test('privacySections contains all required section title keywords', function () {
+    var titles = pageConfig.data.privacySections.map(function (s) { return s.title; }).join('');
+    var requiredKeywords = ['引言', '信息收集范围', '信息使用方式', '信息存储与保护', '用户权利', '未成年人保护', '政策更新', '联系方式'];
+    requiredKeywords.forEach(function (keyword) {
+      expect(titles).toContain(keyword);
+    });
+  });
+
+  // **Validates: Requirements 3.2**
+  test('"信息收集范围" section content contains required keywords', function () {
+    var section = pageConfig.data.privacySections.find(function (s) {
+      return s.title.indexOf('信息收集范围') !== -1;
+    });
+    expect(section).toBeDefined();
+    var keywords = ['微信昵称', '头像', '体重', '饮食', '运动'];
+    keywords.forEach(function (keyword) {
+      expect(section.content).toContain(keyword);
+    });
+  });
+});

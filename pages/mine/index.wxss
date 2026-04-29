@@ -178,3 +178,87 @@ page {
   background-color: #FFFFFF;
   border-radius: 16rpx;
 }
+
+/* 隐私政策入口 */
+.privacy-entry {
+  background-color: #FFFFFF;
+  border-radius: 16rpx;
+  margin: 0 24rpx;
+  padding: 28rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.privacy-entry-text {
+  font-size: 30rpx;
+  color: #333333;
+}
+
+/* 隐私政策弹窗遮罩层 */
+.privacy-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 隐私政策弹窗容器 */
+.privacy-modal-container {
+  background: #FFFFFF;
+  border-radius: 16rpx;
+  width: 85%;
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* 隐私政策弹窗标题 */
+.privacy-modal-title {
+  font-size: 34rpx;
+  font-weight: bold;
+  text-align: center;
+  padding: 30rpx 0 20rpx;
+}
+
+/* 隐私政策弹窗滚动区域 */
+.privacy-modal-scroll {
+  flex: 1;
+  height: 0;
+  padding: 0 30rpx;
+}
+
+/* 隐私政策章节标题 */
+.privacy-section-title {
+  font-size: 28rpx;
+  font-weight: bold;
+  margin-top: 24rpx;
+  display: block;
+}
+
+/* 隐私政策章节正文 */
+.privacy-section-content {
+  font-size: 28rpx;
+  line-height: 1.8;
+  color: #666666;
+  display: block;
+}
+
+/* 隐私政策弹窗关闭按钮 */
+.privacy-modal-btn {
+  background: #1AAD19;
+  color: #FFFFFF;
+  border-radius: 8rpx;
+  font-size: 30rpx;
+  text-align: center;
+  padding: 20rpx 0;
+  margin: 20rpx 30rpx 30rpx;
+}

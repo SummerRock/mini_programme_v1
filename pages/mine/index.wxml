@@ -42,6 +42,26 @@
     <text class="arrow">›</text>
   </view>
 
+  <!-- 隐私政策入口 -->
+  <view class="privacy-entry" bindtap="openPrivacyModal">
+    <text class="privacy-entry-text">隐私政策</text>
+    <text class="arrow">›</text>
+  </view>
+
   <!-- 退出登录 -->
   <view wx:if="{{isLoggedIn}}" class="logout-btn" bindtap="loginout">退出登录</view>
+
+  <!-- 隐私政策弹窗 -->
+  <view class="privacy-modal-overlay" wx:if="{{showPrivacyModal}}" catchtap="closePrivacyModal">
+    <view class="privacy-modal-container" catchtap="">
+      <text class="privacy-modal-title">隐私政策</text>
+      <scroll-view class="privacy-modal-scroll" scroll-y>
+        <view wx:for="{{privacySections}}" wx:key="title">
+          <text class="privacy-section-title">{{item.title}}</text>
+          <text class="privacy-section-content">{{item.content}}</text>
+        </view>
+      </scroll-view>
+      <view class="privacy-modal-btn" bindtap="closePrivacyModal">我知道了</view>
+    </view>
+  </view>
 </view>
