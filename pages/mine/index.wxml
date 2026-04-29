@@ -1,34 +1,47 @@
-<view class="mine-top-part" bindtap="onUserInfoClick">
-  <image class="mine-top-part-image" src="{{avatarUrl || '../../images/ic_user_head.png'}}" />
-  <view class="mine-user-info-container">
-    <text class="mine-user-name-text">{{username}}</text>
-    <view wx:if="{{username !== '未登录' && myRank!== null}}" class="user-rank-container">
-      <text class="mine-user-integral">本站积分: {{myRank.coinCount}}</text>
-      <text class="mine-user-integral" style="margin-left: 20rpx;">等级: {{myRank.level}}</text>
-      <text class="mine-user-integral" style="margin-left: 20rpx;">排名: {{myRank.rank}}</text>
+<view class="mine-page">
+  <!-- 用户信息区 -->
+  <view class="profile-section" bindtap="onProfileTap">
+    <image wx:if="{{avatarUrl}}" class="avatar" src="{{avatarUrl}}" />
+    <view wx:else class="avatar default-avatar">
+      <view class="default-avatar-icon"></view>
+      <view class="default-avatar-body"></view>
+    </view>
+    <text class="nickname">{{nickname}}</text>
+  </view>
+
+  <!-- 饮食摘要区 -->
+  <view class="diet-section">
+    <text class="section-title">最近饮食</text>
+    <!-- 未登录提示 -->
+    <view wx:if="{{!isLoggedIn}}" class="diet-placeholder">请先登录查看饮食记录</view>
+    <!-- 加载中 -->
+    <view wx:elif="{{dietLoading}}" class="diet-placeholder">加载中...</view>
+    <!-- 加载失败 -->
+    <view wx:elif="{{dietError}}" class="diet-placeholder" bindtap="retryLoadDiet">加载失败，点击重试</view>
+    <!-- 数据展示 -->
+    <view wx:else>
+      <view wx:for="{{dayGroups}}" wx:key="date" class="day-group">
+        <text class="day-label">{{item.dateLabel}}</text>
+        <view wx:if="{{item.records.length === 0}}" class="empty-tip">暂无记录</view>
+        <view wx:for="{{item.records}}" wx:for-item="record" wx:key="_id" class="record-item">
+          <text class="food-name">{{record.foodName}}</text>
+          <text class="meal-type">{{record.mealTypeLabel}}</text>
+          <text wx:if="{{record.calories > 0}}" class="calories">{{record.calories}} 千卡</text>
+        </view>
+      </view>
     </view>
   </view>
-</view>
 
-<view class="user-center-info-container">
-  <mp-cells>
-    <mp-cell title="我的收藏" link="true" hover="true" bindtap="showMyCollect">
-      <image slot="icon" class="user-center-info-image-container" style="margin-right: 20rpx;" src="../../images/ic_black_heart.png" />
-    </mp-cell>
-    <mp-cell title="关于作者" link="true" bindtap="showAboutAuthor">
-      <image slot="icon" class="user-center-info-image-container" style="margin-right: 20rpx;" src="../../images/ic_black_face.png" />
-    </mp-cell>
-    <mp-cell title="测试页面" link="true" bindtap="jumpToTest">
-      <image slot="icon" class="user-center-info-image-container" style="margin-right: 20rpx;" src="../../images/ic_black_test.png" />
-    </mp-cell>
-    <mp-cell title="健康管理" link="true" bindtap="jumpToHealth">
-      <image slot="icon" class="user-center-info-image-container" style="margin-right: 20rpx;" src="../../images/ic_red_heart.png" />
-    </mp-cell>
-    <mp-cell title="今天吃什么" link="true" bindtap="jumpToFoodWheel">
-      <image slot="icon" class="user-center-info-image-container" style="margin-right: 20rpx;" src="../../images/ic_black_heart.png" />
-    </mp-cell>
-    <mp-cell title="退出登录" link="true" wx:if="{{username !== '未登录' || healthLoggedIn}}" bindtap="loginout">
-      <image slot="icon" class="user-center-info-image-container" style="margin-right: 20rpx;" src="../../images/ic_logout.png" />
-    </mp-cell>
-  </mp-cells>
+  <!-- 健康管理入口 -->
+  <view class="health-entry" bindtap="jumpToHealth">
+    <image class="health-icon" src="../../images/ic_red_heart.png" />
+    <view class="health-entry-text">
+      <text class="health-title">健康管理</text>
+      <text class="health-desc">管理饮食、运动和体重记录</text>
+    </view>
+    <text class="arrow">›</text>
+  </view>
+
+  <!-- 退出登录 -->
+  <view wx:if="{{isLoggedIn}}" class="logout-btn" bindtap="loginout">退出登录</view>
 </view>

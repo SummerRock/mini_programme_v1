@@ -1,51 +1,180 @@
-.mine-top-part {
-  width: 100%;
+/* 页面容器 */
+page {
+  background-color: #F5F5F5;
+}
+
+.mine-page {
+  min-height: 100vh;
+  background-color: #F5F5F5;
+}
+
+/* 用户信息区 - 绿色渐变背景 */
+.profile-section {
   display: flex;
   flex-direction: row;
-  padding-top: 180rpx;
-  padding-bottom: 30rpx;
   align-items: center;
+  padding-top: 180rpx;
+  padding-bottom: 40rpx;
+  padding-left: 40rpx;
+  padding-right: 40rpx;
   background-image: linear-gradient(#2BA245, #1AAD19);
 }
 
-.mine-top-part-image {
+.avatar {
   width: 96rpx;
   height: 96rpx;
-  border-radius: 8rpx;
-  margin-left: 40rpx;
+  border-radius: 50%;
 }
 
-.mine-user-info-container {
+/* 微信风格默认头像 - 灰色圆形 + 白色人形轮廓 */
+.default-avatar {
+  background-color: #E0E0E0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  overflow: hidden;
+  position: relative;
+}
+
+.default-avatar-icon {
+  width: 36rpx;
+  height: 36rpx;
+  border-radius: 50%;
+  background-color: #FFFFFF;
+  position: absolute;
+  top: 20rpx;
+}
+
+.default-avatar-body {
+  width: 56rpx;
+  height: 36rpx;
+  border-radius: 28rpx 28rpx 0 0;
+  background-color: #FFFFFF;
+  position: absolute;
+  bottom: 6rpx;
+}
+
+.nickname {
+  color: #FFFFFF;
+  font-size: 34rpx;
+  margin-left: 24rpx;
+}
+
+/* 饮食摘要区 */
+.diet-section {
+  background-color: #FFFFFF;
+  border-radius: 16rpx;
+  margin: 24rpx 24rpx 0;
+  padding: 28rpx 28rpx 20rpx;
+}
+
+.section-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333333;
+  margin-bottom: 20rpx;
+}
+
+.diet-placeholder {
+  font-size: 28rpx;
+  color: #999999;
+  padding: 20rpx 0;
+  text-align: center;
+}
+
+/* 日期分组 */
+.day-group {
+  margin-bottom: 16rpx;
+}
+
+.day-label {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #333333;
+  margin-bottom: 8rpx;
+}
+
+.empty-tip {
+  font-size: 26rpx;
+  color: #BBBBBB;
+  padding: 8rpx 0;
+}
+
+/* 单条记录 */
+.record-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12rpx 0;
+}
+
+.food-name {
+  font-size: 28rpx;
+  color: #333333;
+  flex: 1;
+}
+
+.meal-type {
+  font-size: 24rpx;
+  color: #999999;
+  margin-left: 16rpx;
+}
+
+.calories {
+  font-size: 24rpx;
+  color: #FF8800;
+  margin-left: 16rpx;
+}
+
+/* 健康管理入口 */
+.health-entry {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: #FFFFFF;
+  border-radius: 16rpx;
+  margin: 24rpx;
+  padding: 28rpx;
+}
+
+.health-icon {
+  width: 48rpx;
+  height: 48rpx;
+}
+
+.health-entry-text {
+  flex: 1;
   display: flex;
   flex-direction: column;
   margin-left: 20rpx;
 }
 
-.mine-user-name-text {
-  font-size: 22;
-  color: white;
+.health-title {
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #333333;
 }
 
-.mine-user-integral {
-  color: white;
-  font-size: 14px;
+.health-desc {
+  font-size: 24rpx;
+  color: #999999;
+  margin-top: 4rpx;
 }
 
-.user-rank-container {
-  display: flex;
-  flex-direction: row;
+.arrow {
+  font-size: 36rpx;
+  color: #CCCCCC;
 }
 
-.user-center-info-container {
-  display: flex;
-  flex-direction: column;
-  margin: 20rpx 32rpx;
-}
-
-.user-center-info-image-container {
-  height: 20px;
-  width: 20px;
-}
-page {
-  background-color: #eee;
+/* 退出登录按钮 */
+.logout-btn {
+  text-align: center;
+  font-size: 30rpx;
+  color: #E64340;
+  padding: 24rpx 0;
+  margin: 40rpx 24rpx 60rpx;
+  background-color: #FFFFFF;
+  border-radius: 16rpx;
 }
